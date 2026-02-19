@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import nltk
@@ -7,11 +8,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
+# Set NLTK data path for Render
+nltk_data_path = os.path.join(os.path.expanduser('~'), 'nltk_data')
+if not os.path.exists(nltk_data_path):
+    os.makedirs(nltk_data_path)
+nltk.data.path.append(nltk_data_path)
+
 # Download stopwords
 try:
-    stopwords.words('english')
+    nltk.data.find('corpora/stopwords')
 except LookupError:
-    nltk.download('stopwords')
+    nltk.download('stopwords', download_dir=nltk_data_path)
 
 app = Flask(__name__)
 

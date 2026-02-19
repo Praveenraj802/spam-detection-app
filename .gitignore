@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+.ipynb_checkpoints/
+*.csv
+# We want to keep spam.csv for this project as it is the database
+!spam.csv
